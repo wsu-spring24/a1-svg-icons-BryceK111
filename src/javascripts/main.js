@@ -68,7 +68,7 @@ obj_rect
     .transition()
     .attr("transform", "skewX(-20)")
     .attr("transform-origin", "25 75")
-    .duration(1000)
+    .duration(1500)
 
 console.log("icon 3")
 let svg3 = d3.select("main")
@@ -79,7 +79,7 @@ let svg3 = d3.select("main")
 
 let da =[
     { x: 25, y: 65, w: 10, hs: 10, hf: 50, dy: 25},
-    { x: 45, y: 65, w: 10, hs: 10, hf: 35, dy: 40},
+    { x: 45, y: 65, w: 10, hs: 10, hf: 27.5, dy: 47.5},
     { x: 65, y: 65, w: 10, hs: 10, hf: 15, dy: 60}
 ]
 
@@ -98,7 +98,7 @@ let rectangles = svg3.selectAll("rect")
 rectangles.transition()
     .attr("height", d => d.hf)
     .attr("y", d => d.dy)
-    .duration(1000)
+    .duration(2000)
 
 console.log("icon 4")
 let svg4 = d3.select("main")
@@ -153,6 +153,7 @@ let envelope = svg4.append("polygon")
 envelope.transition()
     .attr("points", td[2].map(d => `${d.x},${d.y}`).join(" "))
     .attr("transform-origin", "25 35")
+    .delay(3000)
     .duration(1000)
 
 console.log("icon 5")
@@ -160,4 +161,55 @@ let svg5 = d3.select("main")
     .append('svg')
     .attr('width', 100)
     .attr('height', 100)
-    .style('background', '#eee')
+    .style('background', 'transparent')
+
+let inner = svg5.append("circle")
+    .style("stroke", "transparent")
+    .style("fill", "transparent")
+    .style("stroke-width", 5)
+    .attr("cx", 50)
+    .attr("cy", 68)
+    .attr("r", 25);
+
+let middle = svg5.append("circle")
+    .style("stroke", "transparent")
+    .style("fill", "transparent")
+    .style("stroke-width", 5)
+    .attr("cx", 50)
+    .attr("cy", 68)
+    .attr("r", 42.5);
+
+let outer = svg5.append("circle")
+    .style("stroke", "black")
+    .style("fill", "transparent")
+    .style("stroke-width", 5)
+    .attr("cx", 50)
+    .attr("cy", 68)
+    .attr("r", 1);
+
+svg5.append("path")
+    .style("stroke", "transparent")
+    .style("fill", "white")
+    .style("stroke-width", 5)
+    .attr("d", "M0,100 L0,0 L50,70 L100,0, L100,100 Z")
+
+svg5.append("circle")
+    .style("stroke", "black")
+    .style("fill", "black")
+    .attr("cx", 50)
+    .attr("cy", 68)
+    .attr("r", 7);
+
+outer.transition()
+    .attr("r",60)
+    .duration(4000)
+
+inner.transition()
+    .style("stroke", "black")
+    .delay(1750)
+    .duration(1000)
+
+middle.transition()
+    .style("stroke", "black")
+    .delay(2250)
+    .duration(1250)
