@@ -15,8 +15,6 @@ let svg1 = d3.select('main')
     .attr('width',100)
     .attr('height', 100)
     .style('background', 'transparent')
-    .style("fill", "transparent")
-    .attr("fill", 'white');
 
 svg1.append("circle")
     .style("stroke", "black")
@@ -49,7 +47,7 @@ let svg2 = d3.select("main")
     .append('svg')
     .attr('width', 100)
     .attr('height', 100)
-    .attr('background', '#a9a9a9') // change background color
+    .attr('background', 'transparent')
 
 svg2.append('path')
     .style("stroke", "black")
@@ -72,3 +70,94 @@ obj_rect
     .attr("transform-origin", "25 75")
     .duration(1000)
 
+console.log("icon 3")
+let svg3 = d3.select("main")
+    .append('svg')
+    .attr('width', 100)
+    .attr('height', 100)
+    .style('background', 'transparent')
+
+let da =[
+    { x: 25, y: 65, w: 10, hs: 10, hf: 50, dy: 25},
+    { x: 45, y: 65, w: 10, hs: 10, hf: 35, dy: 40},
+    { x: 65, y: 65, w: 10, hs: 10, hf: 15, dy: 60}
+]
+
+let rectangles = svg3.selectAll("rect")
+    .data(da)
+    .enter()
+    .append("rect")
+    .attr("x", d => d.x)
+    .attr("y", d => d.y)
+    .attr("width", d => d.w)
+    .attr("height", d => d.hs)
+    .attr("stroke", 'black')
+    .attr("stroke-width", 3)
+    .attr("fill", 'black');
+
+rectangles.transition()
+    .attr("height", d => d.hf)
+    .attr("y", d => d.dy)
+    .duration(1000)
+
+console.log("icon 4")
+let svg4 = d3.select("main")
+    .append('svg')
+    .attr('width', 100)
+    .attr('height', 100)
+    .style('background', 'transparent')
+
+svg4.append("rect")
+    .attr("x",16)
+    .attr("y",35)
+    .attr("width", 68)
+    .attr("height", 40)
+    .attr("stroke", 'black')
+    .attr("stroke-width", 3)
+    .attr("fill", '#a9a9a9')
+
+let td = [
+    [
+        {x: 20, y:75},
+        {x: 80, y:75},
+        {x: 50, y:55}
+    ],
+    [
+        {x: 20, y:35},
+        {x: 80, y:35},
+        {x: 50, y:55}
+    ],
+    [
+        {x: 20, y:35},
+        {x: 80, y:35},
+        {x: 50, y:10}
+    ],
+]
+svg4.append("polygon")
+    .attr("points", td[0].map(d => `${d.x},${d.y}`).join(" "))
+    .attr("stroke", 'black')
+    .attr("stroke-width", 3)
+    .attr("fill", '#a9a9a9');
+svg4.append("polygon")
+    .attr("points", td[1].map(d => `${d.x},${d.y}`).join(" "))
+    .attr("stroke", 'black')
+    .attr("stroke-width", 3)
+    .attr("fill", 'white');
+
+let envelope = svg4.append("polygon")
+    .attr("points", td[1].map(d => `${d.x},${d.y}`).join(" "))
+    .attr("stroke", 'black')
+    .attr("stroke-width", 3)
+    .attr("fill", '#a9a9a9');
+
+envelope.transition()
+    .attr("points", td[2].map(d => `${d.x},${d.y}`).join(" "))
+    .attr("transform-origin", "25 35")
+    .duration(1000)
+
+console.log("icon 5")
+let svg5 = d3.select("main")
+    .append('svg')
+    .attr('width', 100)
+    .attr('height', 100)
+    .style('background', '#eee')
