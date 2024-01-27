@@ -14,32 +14,35 @@ let svg1 = d3.select('main')
     .append('svg')
     .attr('width',100)
     .attr('height', 100)
-    .style('background', '#eee')
+    .style('background', 'transparent')
     .style("fill", "transparent")
     .attr("fill", 'white');
 
-let inner = 10
-let width = 10
 svg1.append("circle")
     .style("stroke", "black")
-    .style("fill", "black")
+    .style("stroke-width", 13)
+    .style("fill", "white")
     .attr("cx", 50)
     .attr("cy", 50)
-    .attr("r", inner + width);
+    .attr("r", 15);
 
-svg1.append("circle")
-    .style("stroke", "black")
-    .style("fill", "#eee")
-    .attr("cx", 50)
-    .attr("cy", 50)
-    .attr("r", inner);
+for (let i = 0; i < 6; i++) {
+    svg1.append("rect")
+        .attr('x', 42.5)
+        .attr('y', 20)
+        .attr('width', 15)
+        .attr('height', 10)
+        .attr("transform", `rotate(${i * 60}, 50, 50)`)
+        .attr('stroke', 'black')
+        .attr('fill', 'black')
+}
 
-let obj_circle = svg1.append("circle")
-    .style("stroke", "black")
-    .style("fill", "transparent")
-    .attr("cx", 50)
-    .attr("cy", 50)
-    .attr("r", 5);
+let interpol_rotate = d3.interpolateString('rotate(0, 0, 0)', 'rotate(360, 0, 0)')
+svg1.transition()
+    .attrTween("transform",function(d,i,a){return interpol_rotate})
+    .duration(4000)
+
+
 
 console.log("icon 2")
 let svg2 = d3.select("main")
@@ -69,14 +72,3 @@ obj_rect
     .attr("transform-origin", "25 75")
     .duration(1000)
 
-// function animate_rect(rect)
-// {
-//     rect
-//         .transition()
-//         .attr('transform', 'translate(50, 50)')
-//         .duration(1000)
-//         // .transition()
-//         // .attrTween('transform' , function(d,i,a){ return interpol_rotate } )
-//         // .duration(2000)
-// }
-// animate_rect(obj_rect)
